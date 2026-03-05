@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body class="fade-in">
+   <nav class="navbar">
+    <div class="dropdown ">
+        <button class="dropbtn">Sezioni &#9662;</button>
+        <div class="dropdown-content">
+            <a href="index.html">Home</a>
+            <a href="cronaca.html">Cronaca</a>
+            <a href="interviste.html">Interviste</a>
+            <a href="sport.html">Sport</a>
+        </div>
+    </div>
+   </nav> 
+
+
+
+<header class="main-header">
+    <button class="openbtn" onclick="openNav()">&#9776;</button>
+    <h1>GIORNALINO SCUOLA</h1>
+    <div class="date-bar"><span id=current-date></span></div>
+</header>
+
+
+<main class="container">
+    <section class="grid-notizie">
+        <article class="news main">
+            <h2>Titolo dell'articolo in Primo Piano</h2>
+            <div class="placeholder-img">Immagine Principale</div>
+            <p>Estratto dell' articolo principale qui andrà una una breve descrizione del pezzo piu importante della giornata</p>
+        </article>
+        <aside class="news-secondary">
+            <div class="item">
+                <h3>Notizia breve 1</h3>
+                <p> Sintesi della notizia...</p>
+            </div>
+            <hr>
+            <div class="item">
+                <h3>Notizia breve</h3>
+                <p>sintesi della notizia</p>
+            </div>
+        </aside>
+    </section>
+</main>
+<script src="Script.js"></script>
+
+    
+</body>
+</html>
