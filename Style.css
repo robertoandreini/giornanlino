@@ -1,161 +1,201 @@
+@charset "UTF-8";
+.card-articolo {
+  border-left: 5px solid #007bff;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: white;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.card-articolo:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.badge-sport {
+  background-color: #28a745 !important;
+}
+.badge-scuola {
+  background-color: #dc3545 !important;
+}
+.badge-gossip {
+  background-color: #e83e8c !important;
+}
+.badge-eventi {
+  background-color: #ffc107 !important;
+  color: black !important;
+}
+
 /* Reset di base */
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
 }
 
 /* Animazione cambio pagina */
 .fade-in {
-    animation: fadeIn 0.8s ease-in;
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+  animation: fadeIn 0.8s ease-in;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /* Header e Testata */
 .main-header {
-    text-align: center;
-    border-bottom: 3px double #000;
-    padding: 20px;
+  text-align: center;
+  border-bottom: 3px double #000;
+  padding: 20px;
 }
 
 .date-bar {
-    border-top: 1px solid #ccc;
-    margin-top: 10px;
-    font-size: 0.9rem;
-    padding: 5px;
+  border-top: 1px solid #ccc;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  padding: 5px;
 }
-
 
 /* Layout a Griglia (Lo "scheletro") */
 .container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 15px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
 }
 
 .grid-notizie {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* 2 parti per il principale, 1 per la colonna laterale */
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2 parti per il principale, 1 per la colonna laterale */
+  gap: 20px;
 }
 
 .placeholder-img {
-    background-color: #ddd;
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
+  background-color: #ddd;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 /* Responsive per cellulari */
 @media (max-width: 768px) {
-    .grid-notizie {
-        grid-template-columns: 1fr;
-    }
+  .grid-notizie {
+    grid-template-columns: 1fr;
+  }
 }
 /* Stile della barra di navigazione */
 .navbar {
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px 50px;
-  }
-  
-  /* Il contenitore del menu */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Il pulsante principale */
-  .dropbtn {
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
-  
-  /* Contenuto del menu (nascosto di base) */
-  .dropdown-content {
-    /* Rimuovi display: none */
-    position: absolute;
-    background-color: white;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-    z-index: 1;
-    
-    /* AGGIUNGI QUESTI PER L'ANIMAZIONE */
-    overflow: hidden; /* Nasconde il testo mentre scivola */
-    max-height: 0; /* Altezza iniziale zero */
-    opacity: 0; /* Invisibile all'inizio */
-    transition: max-height 0.5s ease, opacity 2.0s ease; /* La magia dello scorrimento */
-  }
-  
-  /* Link all'interno del menu */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-family: sans-serif;
-    border-bottom: 1px solid #f1f1f1;
-    transform:translateY(-10px);
-    transition:transform 2.0s ease;
-  }
-  
-  /* Cambia colore al passaggio del mouse sui link */
-  .dropdown-content a:hover {
-      background-color: #f1f1f1;
-      color: #c00; /* Rosso stile Corriere */
-  }
-  
-  /* MOSTRA IL MENU AL PASSAGGIO DEL MOUSE (Hover) */
-  .dropdown:hover .dropdown-content {
-    max-height:500px;
-    opacity:1;
-  }
-  
-  /* Cambia stile al pulsante quando il menu è aperto */
-  .dropdown:hover .dropbtn {
-    background-color: #eee;
-  }
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 50px;
+}
 
-  .dropdown:hover .dropdown-content a {
-    transform:translateY(0); /* i link salgono leggermente mentre il menu scende*/
-  }
-  /* Colori dinamici per le categorie */
-.badge-sport { background-color: #28a745 !important; } /* Verde */
-.badge-scuola { background-color: #dc3545 !important; } /* Rosso */
-.badge-gossip { background-color: #e83e8c !important; } /* Rosa */
-.badge-eventi { background-color: #ffc107 !important; color: black !important; } /* Giallo */
+/* Il contenitore del menu */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
+/* Il pulsante principale */
+.dropbtn {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+/* Contenuto del menu (nascosto di base) */
+.dropdown-content {
+  /* Rimuovi display: none */
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  /* AGGIUNGI QUESTI PER L'ANIMAZIONE */
+  overflow: hidden; /* Nasconde il testo mentre scivola */
+  max-height: 0; /* Altezza iniziale zero */
+  opacity: 0; /* Invisibile all'inizio */
+  transition: max-height 0.5s ease, opacity 2s ease; /* La magia dello scorrimento */
+}
+
+/* Link all'interno del menu */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-family: sans-serif;
+  border-bottom: 1px solid #f1f1f1;
+  transform: translateY(-10px);
+  transition: transform 2s ease;
+}
+
+/* Cambia colore al passaggio del mouse sui link */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  color: #c00; /* Rosso stile Corriere */
+}
+
+/* MOSTRA IL MENU AL PASSAGGIO DEL MOUSE (Hover) */
+.dropdown:hover .dropdown-content {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Cambia stile al pulsante quando il menu è aperto */
+.dropdown:hover .dropbtn {
+  background-color: #eee;
+}
+
+.dropdown:hover .dropdown-content a {
+  transform: translateY(0); /* i link salgono leggermente mentre il menu scende*/
+}
+
+/* Colori dinamici per le categorie */
+.badge-sport {
+  background-color: #28a745 !important;
+} /* Verde */
+.badge-scuola {
+  background-color: #dc3545 !important;
+} /* Rosso */
+.badge-gossip {
+  background-color: #e83e8c !important;
+} /* Rosa */
+.badge-eventi {
+  background-color: #ffc107 !important;
+  color: black !important;
+} /* Giallo */
 /* Layout per l'anteprima piccola a destra */
 .item-contenuto {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
 }
 
 .testo-articolo {
-    flex: 1;
+  flex: 1;
 }
 
 .img-anteprima {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+  width: 110px;
+  height: 110px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}/*# sourceMappingURL=style.css.map */
