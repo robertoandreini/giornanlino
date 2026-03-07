@@ -134,3 +134,28 @@ body {
   .dropdown:hover .dropdown-content a {
     transform:translateY(0); /* i link salgono leggermente mentre il menu scende*/
   }
+  /* Colori dinamici per le categorie */
+.badge-sport { background-color: #28a745 !important; } /* Verde */
+.badge-scuola { background-color: #dc3545 !important; } /* Rosso */
+.badge-gossip { background-color: #e83e8c !important; } /* Rosa */
+.badge-eventi { background-color: #ffc107 !important; color: black !important; } /* Giallo */
+
+/* Layout per l'anteprima piccola a destra */
+.item-contenuto {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.testo-articolo {
+    flex: 1;
+}
+
+.img-anteprima {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}

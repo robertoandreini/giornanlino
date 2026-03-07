@@ -21,62 +21,56 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // --- CARICAMENTO ARTICOLI DAL DATABASE ---
+
 async function caricaArticoli() {
     try {
         const risposta = await fetch(urlDatabase);
         const testo = await risposta.text();
-        
-        // Trasformiamo il testo CSV in righe e saltiamo l'intestazione
         const righe = testo.split('\n').slice(1); 
         const contenitore = document.getElementById('bacheca-articoli');
-        
-        if (!contenitore) return; // Esce se l'ID non esiste nell'HTML
-
-        // Puliamo la bacheca prima di caricare
+        if (!contenitore) return;
         contenitore.innerHTML = '';
 
         righe.forEach((riga, i) => {
-            // Questa Regex serve a dividere per virgola SENZA rompere il testo se ci sono virgole dentro le frasi
             const colonne = riga.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
             
             if (colonne.length >= 4) {
-                // Puliamo i dati da eventuali virgolette extra
                 const titolo = colonne[0].replace(/^"|"$/g, '');
-                const categoria = colonne[1].replace(/^"|"$/g, '');
+                const categoria = colonne[1].replace(/^"|"$/g, '').toLowerCase();
                 const autore = colonne[2].replace(/^"|"$/g, '');
                 const testoArticolo = colonne[3].replace(/^"|"$/g, '');
+                const linkImmagine = colonne[4] ? colonne[4].replace(/^"|"$/g, '').trim() : "";
 
-                // Creiamo l'elemento dell'articolo (il "item" che avevi prima)
                 const item = document.createElement('div');
-                item.className = 'item'; // Usiamo la tua classe CSS esistente
+                item.className = 'item';
                 
-                // Effetto entrata fluida
-                item.style.opacity = "0";
-                item.style.transform = "translateY(20px)";
-                item.style.transition = "all 0.5s ease";
-                item.style.marginBottom = "20px";
+                // Determina la classe del colore in base alla categoria
+                let classeColore = "badge-default";
+                if (categoria.includes("sport")) classeColore = "badge-sport";
+                else if (categoria.includes("scuola")) classeColore = "badge-scuola";
+                else if (categoria.includes("gossip")) classeColore = "badge-gossip";
+                else if (categoria.includes("eventi")) classeColore = "badge-eventi";
 
                 item.innerHTML = `
-                    <span style="color: #007bff; font-weight: bold; font-size: 0.8rem; text-transform: uppercase;">${categoria}</span>
-                    <h3 style="margin: 5px 0;">${titolo}</h3>
-                    <p style="font-size: 0.95rem; color: #333;">${testoArticolo}</p>
-                    <small style="color: #777;">Di: <strong>${autore}</strong></small>
+                    <span class="badge ${classeColore}" style="padding: 2px 8px; border-radius: 4px; color: white; font-weight: bold; font-size: 0.75rem; text-transform: uppercase;">
+                        ${categoria}
+                    </span>
+                    <div class="item-contenuto" style="margin-top: 10px;">
+                        <div class="testo-articolo">
+                            <h3 style="margin: 0 0 5px 0;">${titolo}</h3>
+                            <p style="font-size: 0.9rem; color: #333; margin: 0;">${testoArticolo}</p>
+                        </div>
+                        ${linkImmagine ? `<img src="${linkImmagine}" class="img-anteprima">` : ''}
+                    </div>
+                    <small style="display: block; margin-top: 10px; color: #777;">Di: <strong>${autore}</strong></small>
                     <hr style="margin-top: 15px; border: 0; border-top: 1px solid #eee;">
                 `;
 
                 contenitore.appendChild(item);
-
-                // Attiviamo l'animazione dopo un brevissimo delay
-                setTimeout(() => {
-                    item.style.opacity = "1";
-                    item.style.transform = "translateY(0)";
-                }, i * 150);
             }
         });
     } catch (err) {
-        console.error("Errore nel caricamento dati dal comitato:", err);
-        const contenitore = document.getElementById('bacheca-articoli');
-        if (contenitore) contenitore.innerHTML = "<p>Errore nel caricamento delle notizie.</p>";
+        console.error("Errore:", err);
     }
 }
 
